@@ -72,3 +72,4 @@ job-run-terraform-destroy:
   script:
     - pwd
     - ls -al
+    - terraform destroy --auto-approve
