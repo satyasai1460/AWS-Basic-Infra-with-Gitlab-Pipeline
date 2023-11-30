@@ -19,7 +19,7 @@ job-check-terraform-version:
   rules:
     - if: $TERRAFORM_DESTROY == "NO" && $TERRAFORM_APPLY =="YES"
   script:
-    - pwd && ls -al && terraform version
+    - pwd #&& ls -al && terraform version
 
 job-run-terraform-init:
   stage: terraform-init
