@@ -3,8 +3,8 @@ default:
     - Terraform
 
 variables:
-  TERRAFORM_DESTROY: "YES"
-  TERRAFORM_APPLY: "NO"
+  TERRAFORM_DESTROY: "NO"
+  TERRAFORM_APPLY: "YES"
   TERRAFORM_VERSION: "1.6.2"
 
 stages:
@@ -46,7 +46,7 @@ job-run-terraform-plan:
   stage: terraform-plan
   allow_failure: true
   rules:
-    - if: $TERRAFORM_DESTROY == "NO" || $TERRAFORM_APPLY =="YES"
+    - if: $TERRAFORM_DESTROY == "NO" && $TERRAFORM_APPLY == "YES"
   script:
     - terraform init
     - terraform plan
@@ -56,7 +56,7 @@ job-run-terraform-apply:
   stage: terraform-apply
   needs: ["job-run-terraform-plan"]
   rules:
-    - if: $TERRAFORM_DESTROY == "NO" && $TERRAFORM_APPLY =="YES"
+    - if: $TERRAFORM_DESTROY == "NO" && $TERRAFORM_APPLY == "YES"
   script:
     - ls -al
     - terraform init
@@ -68,7 +68,7 @@ job-run-terraform-destroy:
   variables:
     JOB_VAR: "A job variable"
   rules:
-    - if: $TERRAFORM_DESTROY == "YES"
+    - if: $TERRAFORM_DESTROY == "NO"
   script:
     - terraform init
     - terraform destroy --auto-approve
