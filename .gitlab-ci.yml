@@ -39,4 +39,5 @@ job-run-terraform-fmt-validate:
     - pwd
     - echo $AWS_ACCESS_KEY_ID
     - echo $AWS_SECRET_ACCESS_KEY
+    - terraform init
     - terraform fmt && terraform validate
