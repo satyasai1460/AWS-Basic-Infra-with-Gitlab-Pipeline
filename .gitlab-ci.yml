@@ -50,3 +50,25 @@ job-run-terraform-plan:
   script:
     - terraform init
     - terraform plan
+
+job-run-terraform-apply:
+  variables: {}
+  stage: terraform-apply
+  needs: ["job-run-terraform-plan"]
+  rules:
+    - if: $TERRAFORM_DESTROY == "NO" && $TERRAFORM_APPLY =="YES"
+  script:
+    - ls -al
+    - terraform init
+    - terraform apply --auto-approve
+
+job-run-terraform-destroy:
+  stage: terraform-destroy
+  #needs: ["job-run-terraform-plan"]
+  variables:
+    JOB_VAR: "A job variable"
+  rules:
+    - if: $TERRAFORM_DESTROY == "YES"
+  script:
+    - pwd
+    - ls -al
