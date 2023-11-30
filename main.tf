@@ -11,4 +11,10 @@ terraform {
       source  = "hashicorp/aws"
     }
   }
+backend "s3" {
+  bucket = "awsb46"
+  key    = "awsb46-gitlab.tfstate"
+  region = "us-east-1"
+}
+
 }
