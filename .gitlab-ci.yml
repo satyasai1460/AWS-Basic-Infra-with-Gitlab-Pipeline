@@ -3,8 +3,8 @@ default:
     - Terraform
 
 variables:
-  TERRAFORM_DESTROY: "NO"
-  TERRAFORM_APPLY: "YES"
+  TERRAFORM_DESTROY: "YES"
+  TERRAFORM_APPLY: "NO"
   TERRAFORM_VERSION: "1.6.2"
 
 stages:
