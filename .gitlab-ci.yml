@@ -46,7 +46,7 @@ job-run-terraform-plan:
   stage: terraform-plan
   allow_failure: true
   rules:
-    - if: $TERRAFORM_DESTROY == "NO" && $TERRAFORM_APPLY =="YES"
+    - if: $TERRAFORM_DESTROY == "NO" || $TERRAFORM_APPLY =="YES"
   script:
     - terraform init
     - terraform plan
