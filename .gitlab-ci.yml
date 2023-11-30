@@ -41,3 +41,12 @@ job-run-terraform-fmt-validate:
     - echo $AWS_SECRET_ACCESS_KEY
     - terraform init
     - terraform fmt && terraform validate
+
+job-run-terraform-plan:
+  stage: terraform-plan
+  allow_failure: true
+  rules:
+    - if: $TERRAFORM_DESTROY == "NO" && $TERRAFORM_APPLY =="YES"
+  script:
+    - terraform init
+    - terraform plan
